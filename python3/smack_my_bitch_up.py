@@ -3,9 +3,7 @@
 
 import random
 
-from twilio import TwilioRestException
 from twilio.rest import TwilioRestClient
-
 from hackerutils import get_dotenv, get_log_path, sh
 
 dotenv = get_dotenv()
@@ -40,7 +38,7 @@ def main():
             from_=my_number,
             body='Late at work. ' + random.choice(reasons),
         )
-    except TwilioRestException as e:
+    except Exception as e:
         # Log errors.
         with LOG_FILE_PATH.open('a') as f:
             f.write('Failed to send SMS: {}'.format(e))
